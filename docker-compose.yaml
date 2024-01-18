@@ -1,52 +1,49 @@
-version: "3.8"
+version: "3.2"
 services:
-  service_name:
+  processflow:
     build:
       context: .
       dockerfile: Dockerfile
     command: "php artisan serve --host=0.0.0.0"
     volumes:
+      # Re-use local composer cache via host-volume
+      - ~/.composer-docker/cache:/root/.composer/cache:delegated
       - .:/app
     ports:
-      - 8001:8000
-    depends_on:
-      - service_name
+      - 1010:8000
+    networks:
+      - processflow_network
 
-  service_name_queue:
+  processflow_queue:
     build:
       context: .
       dockerfile: Dockerfile
     command: "php artisan queue:work"
-    depends_on:
-      - service_name
-
-  billing_service:
-    image: mysql:5.7.22
-    environment:
-      MYSQL_DATABASE: your_db
-      MYSQL_USER: your_username
-      MYSQL_PASSWORD: your_password
-      MYSQL_ROOT_PASSWORD: your_password
-    volumes:
-      - ./storage/dbdata:/var/lib/mysql
-    ports:
-      - 33061:3306
     networks:
-      - mysql-phpmyadmin
+      - processflow_network
 
+  mysql:
+    image: mariadb:10.5.8
+    environment:
+      - MYSQL_ROOT_PASSWORD=forge
+      - MYSQL_DATABASE=processflow
+      - MYSQL_USER=forge
+      - MYSQL_PASSWORD=forge
+    networks:
+      - processflow_network
   # phpmyadmin
   phpmyadmin:
-    depends_on:
-      - service_name
     image: phpmyadmin
-    restart: always
     ports:
-      - "8090:80"
+      - "1011:80"
     environment:
-      PMA_HOST: service_name
-      MYSQL_ROOT_PASSWORD: your_password
+      - PMA_HOST=mysql
+      - PMA_PASSWORD=forge
     networks:
-      - mysql-phpmyadmin
+      - processflow_network
+    restart: unless-stopped
+    volumes:
+      - ./:/app
 
 networks:
-  mysql-phpmyadmin:
+  processflow_network:
