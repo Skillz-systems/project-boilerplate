@@ -50,3 +50,13 @@
           make lint-fix**
 
 **Cheers!!!!**
+
+# Test Case and Microservice Middleware
+
+A sample test case MiddlewareSampleTest has be added, NOTE: the authentication mock call should always be imported at the top of the test case. The Skillz Packageshas already been installed and configured
+
+### Ckecklist to run microservice
+
+1. Add your current IP address to the ENV_MS
+2. Add your current IP address to phpunit.xml for all test cases requiring auth to run
+3. Use the **"scope.user"** middleware
