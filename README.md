@@ -55,8 +55,26 @@
 
 A sample test case MiddlewareSampleTest has be added, NOTE: the authentication mock call should always be imported at the top of the test case. The Skillz Packageshas already been installed and configured
 
+### Installation of the package (package is already installed)
+
+* to install the package run ***composer require skillz-systems/user-service dev-main***
+* then add the package to your autoload. ie **composer.json** under **"autoload"** then **psr-4**   ****"Skillz\\": "vendor/skillz-systems/user-service/src/"***
+* then run ***composer dump***
+* then **TESTING PURPOSE** go to **phpunit.xml**  and add `<env name="USERS_MS" value="your ip address:docker port"/> `
+* Also, add **USER_MS** to your env file
+
 ### Ckecklist to run microservice
 
 1. Add your current IP address to the ENV_MS
-2. Add your current IP address to phpunit.xml for all test cases requiring auth to run
+2. Add your current IP address to **phpunit.xml** for all test cases requiring auth to run
 3. Use the **"scope.user"** middleware
+
+### To Review Skillz package
+
+To review the skillz package go the following files
+
+* Go to namespace ***App\Http\Middleware** *and open **UsersMiddleware.php**
+
+* In config folder open **skillz.php**
+* Go to ***project-boilerplate\vendor\skillz-systems\user-service\src**** see the package
+* Go to **composer.json** under **"autoload"** then **psr-4***"Skillz\\": "vendor/skillz-systems/user-service/src/"*
