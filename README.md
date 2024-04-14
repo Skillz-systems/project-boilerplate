@@ -53,7 +53,7 @@
 
 # Test Case and Microservice Middleware
 
-A sample test case MiddlewareSampleTest has be added, NOTE: the authentication mock call should always be imported at the top of the test case. The Skillz Packageshas already been installed and configured
+A sample test case MiddlewareSampleTest has be added, NOTE: the authentication mock call should always be imported at the top of the test case. The Skillz Packageshas already been installed and configured .**NOTE we used httponly cookie**
 
 ### Installation of the package (package is already installed)
 
@@ -74,7 +74,6 @@ A sample test case MiddlewareSampleTest has be added, NOTE: the authentication m
 To review the skillz package go the following files
 
 * Go to namespace ***App\Http\Middleware** *and open **UsersMiddleware.php**
-
 * In config folder open **skillz.php**
 * Go to ***project-boilerplate\vendor\skillz-systems\user-service\src**** see the package
 * Go to **composer.json** under **"autoload"** then **psr-4***"Skillz\\": "vendor/skillz-systems/user-service/src/"*
