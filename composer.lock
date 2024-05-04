@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9c491b8531eec05ba41a11d9276a5749",
+    "content-hash": "fdec514ce51e63386620f5ac857dd9e7",
     "packages": [
         {
             "name": "brick/math",
@@ -3183,6 +3183,37 @@
                 }
             ],
             "time": "2023-11-08T05:53:05+00:00"
+        },
+        {
+            "name": "skillz-systems/user-service",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Skillz-systems/skills_user_service_package.git",
+                "reference": "8831e1479fb922100bc19872da91be0557ee46de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Skillz-systems/skills_user_service_package/zipball/8831e1479fb922100bc19872da91be0557ee46de",
+                "reference": "8831e1479fb922100bc19872da91be0557ee46de",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^10.10"
+            },
+            "default-branch": true,
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Skillz Systems",
+                    "email": "info@skillzsystems.com.ng"
+                }
+            ],
+            "support": {
+                "source": "https://github.com/Skillz-systems/skills_user_service_package/tree/main"
+            },
+            "time": "2024-04-12T13:07:55+00:00"
         },
         {
             "name": "symfony/console",
@@ -8146,12 +8177,14 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "skillz-systems/user-service": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
