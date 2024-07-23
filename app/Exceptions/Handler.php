@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -26,5 +27,28 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    private function isApiRequest($request): bool
+    {
+        return $request->is('api/*') || $request->expectsJson();
+    }
+
+    private function handleApiException($request, Throwable $exception): JsonResponse
+    {
+        $statusCode = method_exists($exception, 'getStatusCode') ? $exception->getStatusCode() : 500;
+
+        $response = [
+            'success' => false,
+            'message' => $exception->getMessage(),
+        ];
+
+        //TODO: set debugger false in env for production
+        if (config('app.debug')) {
+            $response['exception'] = get_class($exception);
+            $response['trace'] = $exception->getTrace();
+        }
+
+        return response()->json($response, $statusCode);
     }
 }
